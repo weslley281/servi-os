@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import { connection } from '../db';
-import { userModel } from './userModel';
 
 const doctorModel = connection.define('doctors', {
   id: {
@@ -9,15 +8,31 @@ const doctorModel = connection.define('doctors', {
     primaryKey: true,
     allowNull: false,
   },
-  user_id: {
-    type: DataTypes.INTEGER.UNSIGNED,
+  name: {
+    type: DataTypes.STRING,
     allowNull: false,
-    references: {
-      model: userModel, // Referência ao modelo de usuários
-      key: 'id', // Coluna que será referenciada (id)
-    },
-    onUpdate: 'CASCADE', // Atualizar 'user_id' caso o 'id' do usuário seja alterado
-    onDelete: 'CASCADE', // Excluir registro do médico se o usuário for excluído
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  cpf: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  birthday: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   CRM: {
     type: DataTypes.STRING,
@@ -63,8 +78,8 @@ const doctorModel = connection.define('doctors', {
   },
 });
 
-function createTableDoctor(doctor: any) {
-  return doctor.sync({ force: false }).then(() => {
+function createTableDoctor() {
+  return doctorModel.sync({ force: false }).then(() => {
     console.log('*******Tabela de médico criada com sucesso*******');
   });
 }
