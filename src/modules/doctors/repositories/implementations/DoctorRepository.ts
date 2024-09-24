@@ -85,3 +85,5 @@ class DoctorRepository implements IDoctorRepository {
     return doctor;
   }
 }
+
+export { DoctorRepository };
