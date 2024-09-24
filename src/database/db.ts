@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 
-const connection = new Sequelize('servicos', 'servicos', 'servicos@123', {
+const connection = new Sequelize('servicos', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   // pool: {

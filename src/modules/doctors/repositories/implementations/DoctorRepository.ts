@@ -1,4 +1,4 @@
-import { doctorModel } from '@/database/models/doctorModel';
+import { doctorModel } from '../../../../database/models/doctorModel';
 import { ICreateDoctorDTO } from '../../DTO/IDoctorDTO';
 import { Doctor } from '../../model/Doctor';
 import { IDoctorRepository } from '../IDoctorPepository';
