@@ -10,7 +10,7 @@ class UpdateDoctorController {
       const { id, name, phone, email, birthday, cpf, CRM, specialty } = request.body;
 
       if (!id || !name || !phone || !email || !birthday || !cpf || !CRM || !specialty) {
-        return response.status(400).json({ error: 'All fields are required' });
+        return response.status(400).json({ error: 'Todos os campos são obrigatórios' });
       }
 
       // Chama o caso de uso para atualizar o médico
@@ -21,7 +21,7 @@ class UpdateDoctorController {
       return response.status(200).json(doctor);
     } catch (error: any) {
       // Erro específico se o médico não for encontrado
-      if (error.message === 'Doctor not exists') {
+      if (error.message === 'O doutor não existe') {
         return response.status(404).json({ error: error.message });
       }
 
