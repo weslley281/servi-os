@@ -5,7 +5,7 @@ interface ICreateDoctorDTO {
   email: string;
   cpf: string;
   birthday: Date;
-  password: string;
+  password?: string;
   CRM: string;
   specialty: string;
 }
