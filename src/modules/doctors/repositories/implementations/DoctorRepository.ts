@@ -4,6 +4,8 @@ import { Doctor } from '../../model/Doctor';
 import { IDoctorRepository } from '../IDoctorPepository';
 
 class DoctorRepository implements IDoctorRepository {
+  
+  
   private static INSTANCE: DoctorRepository;
 
   public static getInstance() {
@@ -79,10 +81,25 @@ class DoctorRepository implements IDoctorRepository {
     return doctor;
   }
 
+  async findByCRM(CRM: string): Promise<Doctor> {
+    const doctor: any = await doctorModel.findOne({ where: { CRM } });
+
+    return doctor;
+  }
+
   async findAllUser(): Promise<Doctor[]> {
     const doctor: any = await doctorModel.findAll();
 
     return doctor;
+  }
+
+  async deleteDoctor(id: number): Promise<boolean> {
+    const deletedCount = await doctorModel.destroy({
+      where: { id: id }
+    });
+
+    // Retorna true se a contagem de registros deletados for maior que 0, indicando sucesso
+    return deletedCount > 0;
   }
 }
 

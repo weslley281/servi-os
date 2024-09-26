@@ -1,4 +1,5 @@
-import { IDoctorRepository } from '../../repositories/IDoctorPepository';
+import { IDoctorRepository } from "../../repositories/IDoctorPepository";
+
 
 interface IRequest {
   id: number;
@@ -10,19 +11,29 @@ interface IRequest {
   CRM: string;
   specialty: string;
 }
+
 class UpdateDoctorUseCase {
   constructor(private doctorRepository: IDoctorRepository) {}
 
-  async execute({id, name, phone, email, birthday, cpf, CRM, specialty }: IRequest) {
-    const doctorAlreadyExists = await this.doctorRepository.findByEmail(email);
+  async execute({ id, name, phone, email, birthday, cpf, CRM, specialty }: IRequest) {
+    // Verifica a existência do médico pelo ID
+    const doctorAlreadyExists = await this.doctorRepository.findByCRM(CRM);
 
-    if (doctorAlreadyExists) {
-      return await this.doctorRepository.update({
-        id, name, phone, email, birthday, cpf, CRM, specialty
-      });
-    } else {
-      throw new Error('Doctor not exists');
+    if (!doctorAlreadyExists) {
+      throw new Error(`O Doutor com CRM ${CRM} não existe`);
     }
+
+    // Atualiza os dados do médico
+    return await this.doctorRepository.update({
+      id,
+      name,
+      phone,
+      email,
+      birthday,
+      cpf,
+      CRM,
+      specialty
+    });
   }
 }
 
