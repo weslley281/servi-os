@@ -12,7 +12,7 @@ class DeleteDoctorUseCase {
     const doctorExists = await this.doctorRepository.findById(id);
 
     if (!doctorExists) {
-      throw new Error('Doctor not found');
+      throw new Error('Doutor não encontrado');
     }
 
     await this.doctorRepository.deleteDoctor(id);
