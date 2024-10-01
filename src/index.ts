@@ -4,10 +4,13 @@ import swaggerFile from './swagger.json';
 
 import { createConnectionDataBase } from './database/db';
 import { createTableDoctor } from './database/models/doctorModel';
+import { createTableClient } from './database/models/clientModel';
 import { doctorRoutes } from './routes/doctor.routes';
+import { clientRoutes } from './routes/client.routes';
 
 createConnectionDataBase();
 createTableDoctor();
+createTableClient();
 
 const app = express();
 
@@ -23,6 +26,7 @@ app.use(
 );
 
 app.use('/doctor', doctorRoutes);
+app.use('/client', clientRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 export { app };

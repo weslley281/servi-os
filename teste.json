@@ -1,0 +1,245 @@
+"/clients": {
+      "post": {
+        "tags": ["Clients"],
+        "summary": "Criar um novo doutor",
+        "operationId": "createClient",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "example": "Dr. John Doe" },
+                  "phone": { "type": "string", "example": "+5565981233996" },
+                  "email": { "type": "string", "example": "john.doe@example.com" },
+                  "cpf": { "type": "string", "example": "12345678909" },
+                  "birthday": { "type": "string", "format": "date", "example": "1980-01-01" },
+                  "password": { "type": "string", "example": "securepassword" },
+                  "CRM": { "type": "string", "example": "123456789" },
+                  "specialty": { "type": "string", "example": "Cardiology" }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "cpf",
+                  "birthday",
+                  "password",
+                  "CRM",
+                  "specialty"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Doutor criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "example": "1" },
+                    "name": { "type": "string", "example": "Dr. John Doe" },
+                    "phone": { "type": "string", "example": "+5565981233996" },
+                    "email": { "type": "string", "example": "john.doe@example.com" },
+                    "cpf": { "type": "string", "example": "12345678909" },
+                    "birthday": { "type": "string", "format": "date", "example": "1980-01-01" },
+                    "CRM": { "type": "string", "example": "123456789" },
+                    "specialty": { "type": "string", "example": "Cardiology" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Invalido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string", "example": "Doutor já existe" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/{id}": {
+      "put": {
+        "tags": ["Clients"],
+        "summary": "Atualizar um doutor existente",
+        "operationId": "updateClient",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do doutor a ser atualizado",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "example": "Dr. John Doe" },
+                  "phone": { "type": "string", "example": "+5565981233996" },
+                  "email": { "type": "string", "example": "john.doe@example.com" },
+                  "cpf": { "type": "string", "example": "12345678909" },
+                  "birthday": { "type": "string", "format": "date", "example": "1980-01-01" },
+                  "password": { "type": "string", "example": "securepassword" },
+                  "CRM": { "type": "string", "example": "123456789" },
+                  "specialty": { "type": "string", "example": "Cardiology" }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "cpf",
+                  "birthday",
+                  "password",
+                  "CRM",
+                  "specialty"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Doutor atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "example": 1 },
+                    "name": { "type": "string", "example": "Dr. John Doe" },
+                    "phone": { "type": "string", "example": "+5565981233996" },
+                    "email": { "type": "string", "example": "john.doe@example.com" },
+                    "cpf": { "type": "string", "example": "12345678909" },
+                    "birthday": { "type": "string", "format": "date", "example": "1980-01-01" },
+                    "CRM": { "type": "string", "example": "123456789" },
+                    "specialty": { "type": "string", "example": "Cardiology" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Invalido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string", "example": "Doutor não encontrado" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Clients"],
+        "summary": "Deletar um doutor existente",
+        "operationId": "deleteClient",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do doutor a ser deletado",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Doutor deletado com sucesso"
+          },
+          "404": {
+            "description": "Doutor não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string", "example": "Doutor não encontrado" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clients/profile/{client_id}": {
+      "get": {
+        "tags": ["Clients"],
+        "summary": "Mostrar o perfil de um doutor",
+        "operationId": "showClientProfile",
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "description": "ID do doutor",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Perfil do doutor encontrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "example": 1 },
+                    "name": { "type": "string", "example": "Dr. John Doe" },
+                    "phone": { "type": "string", "example": "+5565981233996" },
+                    "email": { "type": "string", "example": "john.doe@example.com" },
+                    "cpf": { "type": "string", "example": "12345678909" },
+                    "birthday": { "type": "string", "format": "date", "example": "1980-01-01" },
+                    "CRM": { "type": "string", "example": "123456789" },
+                    "specialty": { "type": "string", "example": "Cardiology" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Doutor não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string", "example": "Doutor não encontrado" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
