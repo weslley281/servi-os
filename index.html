@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .carousel-item img{
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(página atual)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Ação</a>
+                <a class="dropdown-item" href="#">Outra ação</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Algo mais aqui</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Desativado</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </div>
+      </nav>
+
+    <main>
+        <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100 img-fluid" src="images/avocado-1851422_640.jpg" alt="Primeiro Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 img-fluid" src="images/guava-6873684_640.jpg" alt="Segundo Slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 img-fluid" src="images/woman-1461619_640.jpg" alt="Terceiro Slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Próximo</span>
+            </a>
+          </div>
+
+          <div class="jumbotron mt-5 text-dark">
+            <h1 class="display-4 text-center mb-3">Frutas Saudáveis para Diabéticos</h1>
+            <p class="lead">Melancia, Abacate e Goiaba são ótimas opções para quem busca controlar os níveis de açúcar no sangue.</p>
+            <hr class="my-4">
+            <p>Aqui você descobre os benefícios dessas frutas e como elas podem contribuir para a saúde, especialmente para quem é diabético.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
+          </div>
+    </main>
+
+    <section class="mt-5 mb-2">
+        <h2 class="text-center mb-3">Benefícios das Frutas</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3>Melancia</h3>
+                    <p>A melancia é uma fruta rica em água e baixa em calorias. Para diabéticos, seu consumo deve ser moderado, já que possui índice glicêmico elevado, mas seu teor de água pode ajudar a mantê-lo hidratado.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Abacate</h3>
+                    <p>O abacate é uma excelente fonte de gorduras saudáveis, que ajudam a melhorar a sensibilidade à insulina. Seu baixo índice glicêmico faz com que seja uma opção segura para diabéticos.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Goiaba</h3>
+                    <p>A goiaba é rica em fibras, o que ajuda no controle do açúcar no sangue. Além disso, é uma ótima fonte de vitamina C e possui baixo índice glicêmico, sendo uma excelente escolha para diabéticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+    <section class="container mt-5 mb-2">
+        <h2 class="text-center">Entre em Contato</h2>
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Endereço de email</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nome@exemplo.com">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Qual a sua fruta favorita</label>
+              <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>Abacate</option>
+                <option>Goiaba</option>
+                <option>Melancia</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Mensagem</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-secondary">Enviar</button>
+            </div>
+          </form>
+
+          <hr>
+          <h2 class="text-center mt-5 mb-3">Comentarios</h2>
+          
+
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Atualizações recentes</h6>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@melancia_fresca</strong>
+                A melancia é uma excelente fonte de hidratação, com 92% de água. Ela também contém vitaminas A e C, sendo uma opção refrescante para o verão.
+              </p>
+            </div>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=e83e8c&fg=e83e8c&size=1" alt="" class="mr-2 rounded">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@goiaba_verde</strong>
+                A goiaba é rica em vitamina C, fornecendo mais dessa vitamina do que a laranja. Ela também é conhecida por suas propriedades antioxidantes e pelo alto teor de fibras.
+              </p>
+            </div>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=6f42c1&fg=6f42c1&size=1" alt="" class="mr-2 rounded">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@abacate_power</strong>
+                O abacate é uma fruta cheia de gorduras saudáveis, especialmente o ômega-9. Ele é ótimo para o coração e ajuda a manter a pele e os cabelos saudáveis.
+              </p>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Todas atualizações</a>
+            </small>
+          </div>
+
+          
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Sugestões</h6>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">Fulano de Tal</strong>
+                  <a href="#">Seguir</a>
+                </div>
+                <span class="d-block">@melancia_lover</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">Cicrano de Tal</strong>
+                  <a href="#">Seguir</a>
+                </div>
+                <span class="d-block">@goiaba_fanatic</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">Beltrano de Tal</strong>
+                  <a href="#">Seguir</a>
+                </div>
+                <span class="d-block">@abacate_health</span>
+              </div>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Todas sugestões</a>
+            </small>
+          </div>
+          
+          
+    </section>
+
+    <footer class="text-center mt-5"></footer>
+        <p>&copy; 2024 Frutas Saudáveis. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
