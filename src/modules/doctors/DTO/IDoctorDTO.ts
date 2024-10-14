@@ -1,9 +1,10 @@
 interface ICreateDoctorDTO {
   id?: number;
+  user_type: string;
   name: string;
   phone: string;
   email: string;
-  cpf: string;
+  CPF: string;
   birthday: Date;
   password?: string;
   CRM: string;

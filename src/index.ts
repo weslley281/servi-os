@@ -3,7 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
 import { createConnectionDataBase } from './database/db';
-import { createTableDoctor } from './database/models/doctorModel';
+import { createTableDoctor } from './database/models/userModel';
 import { createTableClient } from './database/models/clientModel';
 import { doctorRoutes } from './routes/doctor.routes';
 import { clientRoutes } from './routes/client.routes';

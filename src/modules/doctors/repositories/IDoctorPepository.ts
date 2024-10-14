@@ -3,10 +3,11 @@ import { Doctor } from '../model/Doctor';
 
 interface IDoctorRepository {
   create({
+    user_type,
     name,
     phone,
     email,
-    cpf,
+    CPF,
     birthday,
     password,
     CRM,
@@ -14,10 +15,11 @@ interface IDoctorRepository {
   }: ICreateDoctorDTO): Promise<Doctor>;
   update({
     id,
+    user_type,
     name,
     phone,
     email,
-    cpf,
+    CPF,
     birthday,
     password,
     CRM,
@@ -26,7 +28,9 @@ interface IDoctorRepository {
   findById(user_id: number): Promise<Doctor>;
   findByEmail(email: string): Promise<Doctor>;
   findByCRM(CRM: string): Promise<Doctor>;
+  findByCPF(CRM: string): Promise<Doctor>;
   deleteDoctor(id: number): Promise<Boolean>;
+  findByName(): Promise<Doctor[]>;
   findAllUser(): Promise<Doctor[]>;
 }
 

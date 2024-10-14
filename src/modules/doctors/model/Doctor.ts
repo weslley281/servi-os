@@ -1,9 +1,10 @@
 class Doctor {
   id: number;
+  user_type: string;
   name: string;
   phone: string;
   email: string;
-  cpf: string;
+  CPF: string;
   birthday: Date;
   password: string;
   CRM: string;
@@ -11,20 +12,22 @@ class Doctor {
 
   constructor(
     id: number,
+    user_type: string,
     name: string,
     phone: string,
     email: string,
-    cpf: string,
+    CPF: string,
     birthday: Date,
     password: string,
     CRM: string,
     specialty: string
   ) {
     this.id = id;
+    this.user_type = user_type
     this.name = name;
     this.phone = phone;
     this.email = email;
-    this.cpf = cpf;
+    this.CPF = CPF;
     this.birthday = birthday;
     this.password = password;
     this.CRM = CRM;

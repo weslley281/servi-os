@@ -1,11 +1,15 @@
 import { DataTypes } from 'sequelize';
 import { connection } from '../db';
 
-const clientModel = connection.define('clients', {
+const userModel = connection.define('users', {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
+  },
+  user_type: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
   name: {
@@ -21,7 +25,7 @@ const clientModel = connection.define('clients', {
     allowNull: false,
     unique: true,
   },
-  cpf: {
+  CPF: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
@@ -34,12 +38,20 @@ const clientModel = connection.define('clients', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  CRM: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  specialty: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
-function createTableClient() {
-  return clientModel.sync({ force: false }).then(() => {
-    console.log('*******Tabela de médico criada com sucesso*******');
+function createTableUser() {
+  return userModel.sync({ force: false }).then(() => {
+    console.log('*******Tabela de usuarios criada com sucesso*******');
   });
 }
 
-export { clientModel, createTableClient };
+export { userModel, createTableUser };
