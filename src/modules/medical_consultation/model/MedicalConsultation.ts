@@ -1,41 +1,56 @@
 class MedicalConsultation {
-  user_id: number;
-  user_type: string
-  name: string;
-  phone: string;
-  email: string;
-  cpf: string;
-  birthday: Date;
-  password: string;
-  CRM: string;
-  specialty: string;
+  m_consultation_id: number;
+  appointment_date: string;
+  duration: number;
+  status: string;
+  doctor_id: number;
+  client_id: number;
+  reported_symptoms: string;
+  diagnosis: string;
+  prescription: string;
+  notes: string;
+  requested_exams: string;
+  exam_results: string;
+  reason_for_visit: string;
+  payment_method: string;
+  consultation_fee: string;
 
   constructor(
-    user_id: number,
-    user_type: string,
-    name: string,
-    phone: string,
-    email: string,
-    cpf: string,
-    birthday: Date,
-    password: string,
-    CRM: string,
-    specialty: string
+    m_consultation_id: number,
+    appointment_date: string,
+    duration: number,
+    status: string,
+    doctor_id: number,
+    client_id: number,
+    reported_symptoms: string,
+    diagnosis: string,
+    prescription: string,
+    notes: string,
+    requested_exams: string,
+    exam_results: string,
+    reason_for_visit: string,
+    payment_method: string,
+    consultation_fee: string
   ) {
-    this.user_id = user_id;
-    this.user_type = user_type
-    this.name = name;
-    this.phone = phone;
-    this.email = email;
-    this.cpf = cpf;
-    this.birthday = birthday;
-    this.password = password;
-    this.CRM = CRM;
-    this.specialty = specialty;
+    (this.m_consultation_id = m_consultation_id),
+      (this.appointment_date = appointment_date),
+      (this.duration = duration),
+      (this.status = status),
+      (this.doctor_id = doctor_id),
+      (this.client_id = client_id),
+      (this.reported_symptoms = reported_symptoms),
+      (this.diagnosis = diagnosis),
+      (this.prescription = prescription),
+      (this.notes = notes),
+      (this.requested_exams = requested_exams),
+      (this.exam_results = exam_results),
+      (this.reason_for_visit = reason_for_visit),
+      (this.payment_method = payment_method),
+      (this.consultation_fee = consultation_fee);
   }
 
   getMedicalConsultationDetails(): string {
-    return `MedicalConsultation ${this.name} (CRM: ${this.CRM}) is specialized in ${this.specialty}.`;
+    return `MedicalConsultation ${this.doctor_id} for ${this.client_id}.`;
   }
 }
 

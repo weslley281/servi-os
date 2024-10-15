@@ -1,4 +1,5 @@
-import { userModel } from 'src/database/models/userModel';
+import { Op } from 'sequelize';
+import { medicalConsultationModel } from 'src/database/models/medicalConsultationModel';
 import { ICreateMedicalConsultationDTO } from '../../DTO/IMedicalConsultationtDTO';
 import { MedicalConsultation } from '../../model/MedicalConsultation';
 import { IMedicalConsultationRepository } from '../IMedicalConsultationPepository';
@@ -14,103 +15,150 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
     return MedicalConsultationRepository.INSTANCE;
   }
 
+  // Criação de uma nova consulta médica
   async create({
-    user_type,
-    name,
-    phone,
-    email,
-    cpf,
-    birthday,
-    password,
+    appointment_date,
+    duration,
+    status,
+    doctor_id,
+    client_id,
+    reported_symptoms,
+    diagnosis,
+    prescription,
+    notes,
+    requested_exams,
+    exam_results,
+    reason_for_visit,
+    payment_method,
+    consultation_fee
   }: ICreateMedicalConsultationDTO): Promise<MedicalConsultation> {
-    const medicalconsultation: any = await userModel.create({
-      user_type,
-      name,
-      phone,
-      email,
-      cpf,
-      birthday,
-      password,
+    const consultation: any = await medicalConsultationModel.create({
+      appointment_date,
+      duration,
+      status,
+      doctor_id,
+      client_id,
+      reported_symptoms,
+      diagnosis,
+      prescription,
+      notes,
+      requested_exams,
+      exam_results,
+      reason_for_visit,
+      payment_method,
+      consultation_fee,
     });
 
-    return medicalconsultation;
+    return consultation;
   }
 
+  // Atualização de uma consulta médica existente
   async update({
-    user_id,
-    user_type,
-    name,
-    phone,
-    email,
-    cpf,
-    birthday,
-    password,
+    m_consultation_id,
+    appointment_date,
+    duration,
+    status,
+    doctor_id,
+    client_id,
+    reported_symptoms,
+    diagnosis,
+    prescription,
+    notes,
+    requested_exams,
+    exam_results,
+    reason_for_visit,
+    payment_method,
+    consultation_fee
   }: ICreateMedicalConsultationDTO): Promise<MedicalConsultation> {
-    const medicalconsultation: any = await userModel.update(
+    const consultation: any = await medicalConsultationModel.update(
       {
-        user_id,
-        user_type,
-        name,
-        phone,
-        email,
-        cpf,
-        birthday,
-        password,
+        appointment_date,
+        duration,
+        status,
+        doctor_id,
+        client_id,
+        reported_symptoms,
+        diagnosis,
+        prescription,
+        notes,
+        requested_exams,
+        exam_results,
+        reason_for_visit,
+        payment_method,
+        consultation_fee
       },
-      { where: { user_id } }
+      { where: { id: m_consultation_id } }
     );
 
-    return medicalconsultation;
-  }
-
-  async findById(user_id: number): Promise<MedicalConsultation> {
-    const medicalconsultation: any = await userModel.findOne({ where: { id: user_id } });
-
-    return medicalconsultation;
-  }
-
-  async findByEmail(email: string): Promise<MedicalConsultation> {
-    const medicalconsultation: any = await userModel.findOne({ where: { email: email } });
-
-    return medicalconsultation;
-  }
-
-  async findByCPF(CPF: string): Promise<MedicalConsultation> {
-    const medicalconsultation: any = await userModel.findOne({ where: { cpf: CPF } });
-
-    return medicalconsultation;
-  }
-
-  async findAllUser(): Promise<MedicalConsultation[]> {
-    const medicalconsultation: any = await userModel.findAll();
-
-    return medicalconsultation;
-  }
-
-  async deleteMedicalConsultation(user_id: number): Promise<boolean> {
-    const deletedCount = await userModel.destroy({
-      where: { user_id },
+    const updatedConsultation: any = await medicalConsultationModel.findOne({
+      where: { id: m_consultation_id },
     });
 
-    // Retorna true se a contagem de registros deletados for maior que 0, indicando sucesso
+    return updatedConsultation;
+  }
+
+  // Buscar consulta por ID
+  async findById(m_consultation_id: number): Promise<MedicalConsultation> {
+    const consultation: any = await medicalConsultationModel.findOne({
+      where: { id: m_consultation_id },
+    });
+
+    return consultation;
+  }
+
+  // Deletar uma consulta
+  async deleteMedicalConsultation(m_consultation_id: number): Promise<Boolean> {
+    const deletedCount = await medicalConsultationModel.destroy({
+      where: { id: m_consultation_id },
+    });
+
     return deletedCount > 0;
   }
 
-  async findByName(name: string): Promise<MedicalConsultation[]> {
-    const users: any = await userModel.findAll({ where: { name } });
+  // Buscar todas as consultas por status
+  async findAllByStatus(status: string): Promise<MedicalConsultation[]> {
+    const consultations: any = await medicalConsultationModel.findAll({
+      where: { status },
+    });
 
-    return users;
+    return consultations;
   }
 
-  async changePrivileges(user_id: number, user_type: string): Promise<MedicalConsultation> {
-    const user: any = await userModel.update(
-      { user_type },
-      { where: { user_id } }
-    );
+  // Buscar todas as consultas dentro de um intervalo de datas
+  async findAllByDate(initialDate: Date, finalDate: Date): Promise<MedicalConsultation[]> {
+    const consultations: any = await medicalConsultationModel.findAll({
+      where: {
+        appointment_date: {
+          [Op.between]: [initialDate, finalDate],
+        },
+      },
+    });
 
-    const updatedUser: any = await userModel.findOne({ where: { user_id } });
+    return consultations;
+  }
 
-    return updatedUser;
+  // Buscar todas as consultas por ID do cliente
+  async findByAllConsultationByClientId(client_id: string): Promise<MedicalConsultation[]> {
+    const consultations: any = await medicalConsultationModel.findAll({
+      where: { client_id },
+    });
+
+    return consultations;
+  }
+
+  // Buscar todas as consultas por ID do médico
+  async findByAllConsultationByDoctorId(doctor_id: string): Promise<MedicalConsultation[]> {
+    const consultations: any = await medicalConsultationModel.findAll({
+      where: { doctor_id },
+    });
+
+    return consultations;
+  }
+
+  // Buscar todas as consultas (sem filtros)
+  async findAllUser(): Promise<MedicalConsultation[]> {
+    const consultations: any = await medicalConsultationModel.findAll();
+    return consultations;
   }
 }
 

@@ -25,15 +25,15 @@ const medicalConsultationModel = connection.define('medical_consultations', {
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: 'users',
-      key: 'id',
+      key: 'user_id',
     },
     allowNull: false,
   },
-  patient_id: {
+  client_id: {
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
-      model: 'patients',
-      key: 'id',
+      model: 'users',
+      key: 'user_id',
     },
     allowNull: false,
   },
