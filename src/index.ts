@@ -3,14 +3,15 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
 import { createConnectionDataBase } from './database/db';
-import { createTableDoctor } from './database/models/userModel';
-import { createTableClient } from './database/models/clientModel';
+import { createTableUser } from './database/models/userModel';
+import { createTableMedicalConsultation } from './database/models/medicalConsultationModel';
+
 import { doctorRoutes } from './routes/doctor.routes';
 import { clientRoutes } from './routes/client.routes';
 
 createConnectionDataBase();
-createTableDoctor();
-createTableClient();
+createTableUser();
+createTableMedicalConsultation();
 
 const app = express();
 

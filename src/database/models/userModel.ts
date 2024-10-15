@@ -2,14 +2,14 @@ import { DataTypes } from 'sequelize';
 import { connection } from '../db';
 
 const userModel = connection.define('users', {
-  id: {
+  user_id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
   user_type: {
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM('admin', 'manager', 'supervisor', 'client', 'doctor', 'employee'),
     allowNull: false,
   },
   name: {
