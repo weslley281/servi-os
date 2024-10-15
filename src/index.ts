@@ -1,4 +1,5 @@
 import express from 'express';
+import { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
@@ -8,6 +9,9 @@ import { createTableMedicalConsultation } from './database/models/medicalConsult
 
 import { doctorRoutes } from './routes/doctor.routes';
 import { clientRoutes } from './routes/client.routes';
+import { medicalconsultationRoutes } from './routes/medicalConsultation.routes';
+
+import { AppError } from './errors/AppError';
 
 createConnectionDataBase();
 createTableUser();
@@ -28,6 +32,7 @@ app.use(
 
 app.use('/doctor', doctorRoutes);
 app.use('/client', clientRoutes);
+app.use('/medicalconsultation', medicalconsultationRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 export { app };

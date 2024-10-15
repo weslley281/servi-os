@@ -8,6 +8,8 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./",
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
