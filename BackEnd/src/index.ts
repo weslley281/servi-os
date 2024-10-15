@@ -19,6 +19,7 @@ createTableMedicalConsultation();
 
 const app = express();
 
+
 app.use(express.json());
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
