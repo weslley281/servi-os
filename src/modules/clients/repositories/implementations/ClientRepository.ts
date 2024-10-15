@@ -1,4 +1,4 @@
-import { clientModel } from '../../../../database/models/clientModel';
+import { userModel } from 'src/database/models/userModel';
 import { ICreateClientDTO } from '../../DTO/IClientDTO';
 import { Client } from '../../model/Client';
 import { IClientRepository } from '../IClientPepository';
@@ -15,14 +15,16 @@ class ClientRepository implements IClientRepository {
   }
 
   async create({
+    user_type,
     name,
     phone,
     email,
     cpf,
     birthday,
-    password
+    password,
   }: ICreateClientDTO): Promise<Client> {
-    const client: any = await clientModel.create({
+    const client: any = await userModel.create({
+      user_type,
       name,
       phone,
       email,
@@ -35,61 +37,80 @@ class ClientRepository implements IClientRepository {
   }
 
   async update({
-    id,
+    user_id,
+    user_type,
     name,
     phone,
     email,
     cpf,
     birthday,
-    password
+    password,
   }: ICreateClientDTO): Promise<Client> {
-    const client: any = await clientModel.update(
+    const client: any = await userModel.update(
       {
-        id,
+        user_id,
+        user_type,
         name,
         phone,
         email,
         cpf,
         birthday,
-        password
+        password,
       },
-      { where: { id: id } }
+      { where: { user_id } }
     );
 
     return client;
   }
 
   async findById(user_id: number): Promise<Client> {
-    const client: any = await clientModel.findOne({ where: { id: user_id } });
+    const client: any = await userModel.findOne({ where: { id: user_id } });
 
     return client;
   }
 
   async findByEmail(email: string): Promise<Client> {
-    const client: any = await clientModel.findOne({ where: { email: email } });
+    const client: any = await userModel.findOne({ where: { email: email } });
 
     return client;
   }
 
   async findByCPF(CPF: string): Promise<Client> {
-    const client: any = await clientModel.findOne({ where: { cpf: CPF } });
+    const client: any = await userModel.findOne({ where: { cpf: CPF } });
 
     return client;
   }
 
   async findAllUser(): Promise<Client[]> {
-    const client: any = await clientModel.findAll();
+    const client: any = await userModel.findAll();
 
     return client;
   }
 
-  async deleteClient(id: number): Promise<boolean> {
-    const deletedCount = await clientModel.destroy({
-      where: { id: id },
+  async deleteClient(user_id: number): Promise<boolean> {
+    const deletedCount = await userModel.destroy({
+      where: { user_id },
     });
 
     // Retorna true se a contagem de registros deletados for maior que 0, indicando sucesso
     return deletedCount > 0;
+  }
+
+  async findByName(name: string): Promise<Client[]> {
+    const users: any = await userModel.findAll({ where: { name } });
+
+    return users;
+  }
+
+  async changePrivileges(user_id: number, user_type: string): Promise<Client> {
+    const user: any = await userModel.update(
+      { user_type },
+      { where: { user_id } }
+    );
+
+    const updatedUser: any = await userModel.findOne({ where: { user_id } });
+
+    return updatedUser;
   }
 }
 

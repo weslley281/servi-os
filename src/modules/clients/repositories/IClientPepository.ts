@@ -3,6 +3,7 @@ import { Client } from '../model/Client';
 
 interface IClientRepository {
   create({
+    user_type,
     name,
     phone,
     email,
@@ -11,7 +12,8 @@ interface IClientRepository {
     password,
   }: ICreateClientDTO): Promise<Client>;
   update({
-    id,
+    user_id,
+    user_type,
     name,
     phone,
     email,
@@ -22,8 +24,10 @@ interface IClientRepository {
   findById(user_id: number): Promise<Client>;
   findByEmail(email: string): Promise<Client>;
   findByCPF(CPF: string): Promise<Client>;
-  deleteClient(id: number): Promise<Boolean>;
+  deleteClient(user_id: number): Promise<Boolean>;
+  findByName(name: string): Promise<Client[]>;
   findAllUser(): Promise<Client[]>;
+  changePrivileges(user_id: number, user_type: string): Promise<Client>
 }
 
 export { IClientRepository };
