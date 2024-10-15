@@ -4,7 +4,8 @@ import { UpdateClientUseCase } from './UpdateClientUseCase';
 
 // Define o esquema de validação usando Zod
 const updateClientSchema = z.object({
-  id: z.number().int(),
+  user_id: z.number().int(),
+  user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   name: z.string().min(1, { message: 'Nome é obrigatório' }),
   phone: z
     .string()

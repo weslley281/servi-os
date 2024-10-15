@@ -1,7 +1,8 @@
 import { IClientRepository } from '../../repositories/IClientPepository';
 
 interface IRequest {
-  id: number;
+  user_id: number;
+  user_type: string;
   name: string;
   phone: string;
   email: string;
@@ -13,7 +14,8 @@ class UpdateClientUseCase {
   constructor(private clientRepository: IClientRepository) {}
 
   async execute({
-    id,
+    user_id,
+    user_type,
     name,
     phone,
     email,
@@ -29,7 +31,8 @@ class UpdateClientUseCase {
 
     // Atualiza os dados do médico
     return await this.clientRepository.update({
-      id,
+      user_id,
+      user_type,
       name,
       phone,
       email,

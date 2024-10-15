@@ -1,20 +1,20 @@
 import { IClientRepository } from '../../repositories/IClientPepository';
 
 interface IRequest {
-  id: number;
+  user_id: number;
 }
 
 class DeleteClientUseCase {
   constructor(private clientRepository: IClientRepository) {}
 
-  async execute({ id }: IRequest): Promise<void> {
-    const clientExists = await this.clientRepository.findById(id);
+  async execute({ user_id }: IRequest): Promise<void> {
+    const clientExists = await this.clientRepository.findById(user_id);
 
     if (!clientExists) {
       throw new Error('Doutor não encontrado');
     }
 
-    await this.clientRepository.deleteClient(id);
+    await this.clientRepository.deleteClient(user_id);
   }
 }
 

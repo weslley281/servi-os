@@ -3,6 +3,7 @@ import { Client } from '../../model/Client';
 import { IClientRepository } from '../../repositories/IClientPepository';
 
 interface IRequest {
+  user_type: string
   name: string;
   phone: string;
   email: string;
@@ -15,6 +16,7 @@ class CreateClientUseCase {
   constructor(private clientRepository: IClientRepository) {}
 
   async execute({
+    user_type,
     name,
     phone,
     email,
@@ -29,6 +31,7 @@ class CreateClientUseCase {
     const passwordHash = await hash(password, 8);
 
     return await this.clientRepository.create({
+      user_type,
       name,
       phone,
       email,

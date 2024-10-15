@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { CreateClientUseCase } from './CreateClientUseCase';
 
 const createClientSchema = z.object({
+  user_type: z.string().min(1, { message: 'O tipo do usuário é obrigatório' }),
   name: z.string().min(1, { message: 'Nome é obrigatório' }),
   phone: z
     .string()
