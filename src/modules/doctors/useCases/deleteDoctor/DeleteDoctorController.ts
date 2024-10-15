@@ -4,7 +4,7 @@ import { DeleteDoctorUseCase } from './DeleteDoctorUseCase';
 
 // Define o esquema de validação para o ID do médico
 const deleteDoctorSchema = z.object({
-  doctor_id: z.string(),
+  user_id: z.number().int(),
 });
 
 class DeleteDoctorController {
@@ -13,11 +13,11 @@ class DeleteDoctorController {
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       // Valida o parâmetro doctor_id
-      const { doctor_id } = deleteDoctorSchema.parse(request.params);
-      const id = Number(doctor_id);
+      const { user_id } = deleteDoctorSchema.parse(request.params);
+      const id = Number(user_id);
 
       // Chama o caso de uso para deletar o médico
-      await this.deleteDoctorUseCase.execute({ id });
+      await this.deleteDoctorUseCase.execute({ user_id });
 
       return response.status(204).send(); // Retorna 204 No Content após a exclusão
     } catch (error: any) {

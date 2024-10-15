@@ -4,9 +4,6 @@ import { Doctor } from '../../model/Doctor';
 import { IDoctorRepository } from '../IDoctorPepository';
 
 class DoctorRepository implements IDoctorRepository {
-  changePrivileges(user_id: number, user_type: string): Promise<Doctor> {
-    throw new Error('Method not implemented.');
-  }  
   private static INSTANCE: DoctorRepository;
 
   public static getInstance() {
@@ -116,6 +113,17 @@ class DoctorRepository implements IDoctorRepository {
     const users: any = await userModel.findAll({ where: { name } });
 
     return users;
+  }
+
+  async changePrivileges(user_id: number, user_type: string): Promise<Doctor> {
+    const user: any = await userModel.update(
+      { user_type },
+      { where: { user_id} }
+    );
+
+    const updatedUser: any = await userModel.findOne({ where: { user_id} });
+
+    return updatedUser;
   }
 }
 

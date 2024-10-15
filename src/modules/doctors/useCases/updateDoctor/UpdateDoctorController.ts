@@ -4,7 +4,7 @@ import { UpdateDoctorUseCase } from './UpdateDoctorUseCase';
 
 // Define o esquema de validação usando Zod
 const updateDoctorSchema = z.object({
-  id: z.number().int(),
+  user_id: z.number().int(),
   user_type: z.string().min(1, { message: "O tipo de usuário é obrigatório" }),
   name: z.string().min(1, { message: "Nome é obrigatório" }),
   phone: z.string().min(10, { message: "Telefone deve ter mais de 10 caracteres" }),
