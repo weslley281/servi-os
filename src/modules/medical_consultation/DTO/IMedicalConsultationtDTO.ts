@@ -1,6 +1,6 @@
 interface ICreateMedicalConsultationDTO {
   m_consultation_id?: number;
-  appointment_date: string;
+  appointment_date: Date;
   duration?: number;
   status: string;
   doctor_id: number;

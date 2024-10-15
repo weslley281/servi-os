@@ -1,43 +1,32 @@
 import { IMedicalConsultationRepository } from '../../repositories/IMedicalConsultationPepository';
 
 interface IRequest {
-  user_id: number;
-  user_type: string;
-  name: string;
-  phone: string;
-  email: string;
-  cpf: string;
-  birthday: Date;
+  m_consultation_id: number;
+  appointment_date: Date;
+  status: string;
+  doctor_id: number;
+  client_id: number;
 }
 
 class UpdateMedicalConsultationUseCase {
-  constructor(private medicalconsultationRepository: IMedicalConsultationRepository) {}
+  constructor(
+    private medicalconsultationRepository: IMedicalConsultationRepository
+  ) {}
 
   async execute({
-    user_id,
-    user_type,
-    name,
-    phone,
-    email,
-    birthday,
-    cpf,
+    m_consultation_id,
+    appointment_date,
+    status,
+    doctor_id,
+    client_id,
   }: IRequest) {
-    // Verifica a existência do médico pelo ID
-    const medicalconsultationAlreadyExists = await this.medicalconsultationRepository.findByCPF(cpf);
 
-    if (!medicalconsultationAlreadyExists) {
-      throw new Error(`O Doutor com CRM ${cpf} não existe`);
-    }
-
-    // Atualiza os dados do médico
     return await this.medicalconsultationRepository.update({
-      user_id,
-      user_type,
-      name,
-      phone,
-      email,
-      birthday,
-      cpf,
+      m_consultation_id,
+      appointment_date,
+      status,
+      doctor_id,
+      client_id,
     });
   }
 }

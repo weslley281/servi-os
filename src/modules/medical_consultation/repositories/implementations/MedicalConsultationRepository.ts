@@ -9,7 +9,8 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
 
   public static getInstance() {
     if (!MedicalConsultationRepository.INSTANCE) {
-      MedicalConsultationRepository.INSTANCE = new MedicalConsultationRepository();
+      MedicalConsultationRepository.INSTANCE =
+        new MedicalConsultationRepository();
     }
 
     return MedicalConsultationRepository.INSTANCE;
@@ -30,7 +31,7 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
     exam_results,
     reason_for_visit,
     payment_method,
-    consultation_fee
+    consultation_fee,
   }: ICreateMedicalConsultationDTO): Promise<MedicalConsultation> {
     const consultation: any = await medicalConsultationModel.create({
       appointment_date,
@@ -68,7 +69,7 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
     exam_results,
     reason_for_visit,
     payment_method,
-    consultation_fee
+    consultation_fee,
   }: ICreateMedicalConsultationDTO): Promise<MedicalConsultation> {
     const consultation: any = await medicalConsultationModel.update(
       {
@@ -85,7 +86,7 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
         exam_results,
         reason_for_visit,
         payment_method,
-        consultation_fee
+        consultation_fee,
       },
       { where: { id: m_consultation_id } }
     );
@@ -125,7 +126,10 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
   }
 
   // Buscar todas as consultas dentro de um intervalo de datas
-  async findAllByDate(initialDate: Date, finalDate: Date): Promise<MedicalConsultation[]> {
+  async findAllByDate(
+    initialDate: Date,
+    finalDate: Date
+  ): Promise<MedicalConsultation[]> {
     const consultations: any = await medicalConsultationModel.findAll({
       where: {
         appointment_date: {
@@ -138,7 +142,9 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
   }
 
   // Buscar todas as consultas por ID do cliente
-  async findByAllConsultationByClientId(client_id: string): Promise<MedicalConsultation[]> {
+  async findByAllConsultationByClientId(
+    client_id: string
+  ): Promise<MedicalConsultation[]> {
     const consultations: any = await medicalConsultationModel.findAll({
       where: { client_id },
     });
@@ -147,7 +153,9 @@ class MedicalConsultationRepository implements IMedicalConsultationRepository {
   }
 
   // Buscar todas as consultas por ID do médico
-  async findByAllConsultationByDoctorId(doctor_id: string): Promise<MedicalConsultation[]> {
+  async findByAllConsultationByDoctorId(
+    doctor_id: string
+  ): Promise<MedicalConsultation[]> {
     const consultations: any = await medicalConsultationModel.findAll({
       where: { doctor_id },
     });
