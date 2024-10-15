@@ -6,7 +6,7 @@ const createMedicalConsultationSchema = z.object({
   appointment_date: z.coerce.date({ message: 'Formato de data invalido' }),
   status: z.string().min(1, { message: 'Status é obrigatório' }),
   doctor_id: z.number().int(),
-  client_id: z.number().int(),
+  client_id: z.number().int(), 
 });
 
 class CreateMedicalConsultationController {
