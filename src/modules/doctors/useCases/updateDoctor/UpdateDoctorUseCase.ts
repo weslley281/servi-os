@@ -3,10 +3,11 @@ import { IDoctorRepository } from "../../repositories/IDoctorPepository";
 
 interface IRequest {
   id: number;
+  user_type: string;
   name: string;
   phone: string;
   email: string;
-  cpf: string;
+  CPF: string;
   birthday: Date;
   CRM: string;
   specialty: string;
@@ -15,7 +16,7 @@ interface IRequest {
 class UpdateDoctorUseCase {
   constructor(private doctorRepository: IDoctorRepository) {}
 
-  async execute({ id, name, phone, email, birthday, cpf, CRM, specialty }: IRequest) {
+  async execute({ id, user_type, name, phone, email, birthday, CPF, CRM, specialty }: IRequest) {
     // Verifica a existência do médico pelo ID
     const doctorAlreadyExists = await this.doctorRepository.findByCRM(CRM);
 
@@ -26,11 +27,12 @@ class UpdateDoctorUseCase {
     // Atualiza os dados do médico
     return await this.doctorRepository.update({
       id,
+      user_type,
       name,
       phone,
       email,
       birthday,
-      cpf,
+      CPF,
       CRM,
       specialty
     });

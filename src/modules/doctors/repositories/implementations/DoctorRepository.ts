@@ -3,7 +3,10 @@ import { ICreateDoctorDTO } from '../../DTO/IDoctorDTO';
 import { Doctor } from '../../model/Doctor';
 import { IDoctorRepository } from '../IDoctorPepository';
 
-class DoctorRepository implements IDoctorRepository {  
+class DoctorRepository implements IDoctorRepository {
+  changePrivileges(user_id: number, user_type: string): Promise<Doctor> {
+    throw new Error('Method not implemented.');
+  }  
   private static INSTANCE: DoctorRepository;
 
   public static getInstance() {
@@ -41,7 +44,7 @@ class DoctorRepository implements IDoctorRepository {
   }
 
   async update({
-    id,
+    user_id,
     user_type,
     name,
     phone,
@@ -54,7 +57,7 @@ class DoctorRepository implements IDoctorRepository {
   }: ICreateDoctorDTO): Promise<Doctor> {
     const doctor: any = await userModel.update(
       {
-        id,
+        user_id,
         user_type,
         name,
         phone,
@@ -65,14 +68,14 @@ class DoctorRepository implements IDoctorRepository {
         CRM,
         specialty,
       },
-      { where: { id: id } }
+      { where: { user_id } }
     );
 
     return doctor;
   }
 
   async findById(user_id: number): Promise<Doctor> {
-    const doctor: any = await userModel.findOne({ where: { id: user_id } });
+    const doctor: any = await userModel.findOne({ where: { user_id } });
 
     return doctor;
   }
@@ -95,21 +98,24 @@ class DoctorRepository implements IDoctorRepository {
     return doctor;
   }
 
-  async deleteDoctor(id: number): Promise<boolean> {
+  async deleteDoctor(user_id: number): Promise<boolean> {
     const deletedCount = await userModel.destroy({
-      where: { id: id }
+      where: { user_id }
     });
 
-    // Retorna true se a contagem de registros deletados for maior que 0, indicando sucesso
     return deletedCount > 0;
   }
 
-  findByCPF(CPF: string): Promise<Doctor> {
-    throw new Error('Method not implemented.');
+  async findByCPF(CPF: string): Promise<Doctor> {
+    const user: any = await userModel.findOne({ where: { CPF } });
+
+    return user;
   }
   
-  findByName(): Promise<Doctor[]> {
-    throw new Error('Method not implemented.');
+  async findByName(name: string): Promise<Doctor[]> {
+    const users: any = await userModel.findAll({ where: { name } });
+
+    return users;
   }
 }
 

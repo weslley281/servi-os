@@ -3,10 +3,11 @@ import { Doctor } from '../../model/Doctor';
 import { IDoctorRepository } from '../../repositories/IDoctorPepository';
 
 interface IRequest {
+  user_type: string;
   name: string;
   phone: string;
   email: string;
-  cpf: string;
+  CPF: string;
   birthday: Date;
   password: string;
   CRM: string;
@@ -17,10 +18,11 @@ class CreateDoctorUseCase {
   constructor(private doctorRepository: IDoctorRepository) {}
 
   async execute({
+    user_type,
     name,
     phone,
     email,
-    cpf,
+    CPF,
     birthday,
     password,
     CRM,
@@ -33,10 +35,11 @@ class CreateDoctorUseCase {
     const passwordHash = await hash(password, 8);
 
     return await this.doctorRepository.create({
+      user_type,
       name,
       phone,
       email,
-      cpf,
+      CPF,
       birthday,
       password: passwordHash,
       CRM,

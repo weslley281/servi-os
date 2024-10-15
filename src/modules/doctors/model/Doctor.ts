@@ -1,5 +1,5 @@
 class Doctor {
-  id: number;
+  user_id: number;
   user_type: string;
   name: string;
   phone: string;
@@ -11,7 +11,7 @@ class Doctor {
   specialty: string;
 
   constructor(
-    id: number,
+    user_id: number,
     user_type: string,
     name: string,
     phone: string,
@@ -22,7 +22,7 @@ class Doctor {
     CRM: string,
     specialty: string
   ) {
-    this.id = id;
+    this.user_id = user_id;
     this.user_type = user_type
     this.name = name;
     this.phone = phone;

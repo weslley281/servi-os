@@ -14,7 +14,7 @@ interface IDoctorRepository {
     specialty,
   }: ICreateDoctorDTO): Promise<Doctor>;
   update({
-    id,
+    user_id,
     user_type,
     name,
     phone,
@@ -29,8 +29,9 @@ interface IDoctorRepository {
   findByEmail(email: string): Promise<Doctor>;
   findByCRM(CRM: string): Promise<Doctor>;
   findByCPF(CRM: string): Promise<Doctor>;
-  deleteDoctor(id: number): Promise<Boolean>;
-  findByName(): Promise<Doctor[]>;
+  deleteDoctor(user_id: number): Promise<Boolean>;
+  findByName(name: string): Promise<Doctor[]>;
+  changePrivileges(user_id: number, user_type: string): Promise<Doctor>
   findAllUser(): Promise<Doctor[]>;
 }
 

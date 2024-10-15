@@ -5,10 +5,11 @@ import { UpdateDoctorUseCase } from './UpdateDoctorUseCase';
 // Define o esquema de validação usando Zod
 const updateDoctorSchema = z.object({
   id: z.number().int(),
+  user_type: z.string().min(1, { message: "O tipo de usuário é obrigatório" }),
   name: z.string().min(1, { message: "Nome é obrigatório" }),
   phone: z.string().min(10, { message: "Telefone deve ter mais de 10 caracteres" }),
   email: z.string().email({ message: "Formato do email é invalido" }),
-  cpf: z.string().min(11, { message: "CPF deve ter mais de 11 digitos" }),
+  CPF: z.string().min(11, { message: "CPF deve ter mais de 11 digitos" }),
   birthday: z.coerce.date({ message: "Formato de data invalido" }),
   CRM: z.string().min(1, { message: "CRM é obrigatório" }),
   specialty: z.string().min(1, { message: "Especialidadede é obrigatorio" }),

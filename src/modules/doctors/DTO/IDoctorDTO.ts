@@ -1,5 +1,5 @@
 interface ICreateDoctorDTO {
-  id?: number;
+  user_id?: number;
   user_type: string;
   name: string;
   phone: string;
